@@ -1,0 +1,40 @@
+- name: Update and Install packages
+  hosts: localhost
+  become: True
+  tasks:
+    - name: install rpmfusion repo
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm
+        - http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm
+    - name: install common packages
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - vim
+        - the_silver_searcher
+        - bzip2
+        - curl
+        - gcc-c++
+        - git
+        - libselinux-python
+        - libyaml-devel
+        - make
+        - readline-devel
+        - redhat-rpm-config
+        - ruby-devel
+        - tmux
+        - tree
+        - vim
+        - zlib-devel
+        - rubygems
+        - powerline
+        - powerline-fonts
+        - vlc
+        - gstreamer
+        - keepassxc
+        - NetworkManager-openvpn
+        - NetworkManager-openvpn-gnome

@@ -1,0 +1,9 @@
+[localhost]
+127.0.0.1
+
+
+[localhost:vars]
+ansible_connection = local
+username = elijah
+fedora_version = 29
+dropbox_repokey = http://linux.dropbox.com/fedora/rpm-public-key.asc

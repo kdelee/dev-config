@@ -1,0 +1,18 @@
+---
+- name: Setup Docker
+  hosts: localhost
+  become: True
+  tasks:
+    - name: Create Dropbox repo
+      template:
+        src=files/dropbox.repo
+        dest=/etc/yum.repos.d/dropbox.repo
+        owner=root
+        group=root
+        mode=0600
+    - name: Import GPG key for this repo
+      command: rpm --import {{ dropbox_repokey }}
+    - name: Install Dropbox package
+      package:
+        name: nautilus-dropbox
+        state: latest
