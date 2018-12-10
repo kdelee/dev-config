@@ -3,6 +3,7 @@
   hosts: localhost
   become: True
   tasks:
+      # The flatpack modules seem broken right now :(
     - name: Enable Flathub repository
       become: yes
       command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

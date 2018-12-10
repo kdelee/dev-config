@@ -5,5 +5,8 @@
 [localhost:vars]
 ansible_connection = local
 username = elijah
-fedora_version = 29
+ssh_key = /home/elijah/.ssh/id_rsa
+fedora_version = 30
+git_user = kdelee
+git_email = kdelee@redhat.com
 dropbox_repokey = http://linux.dropbox.com/fedora/rpm-public-key.asc

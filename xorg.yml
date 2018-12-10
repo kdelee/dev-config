@@ -1,0 +1,12 @@
+---
+- name: Replace Gnome Display Manager config file
+  hosts: localhost
+  become: True
+  tasks:
+    - name: Replace /etc/gdm/custom.conf to enable xOrg only
+      template:
+        src=files/gdm.custom.conf
+        dest=/etc/gdm/custom.conf
+        owner=root
+        group=root
+        mode=0600

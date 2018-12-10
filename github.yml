@@ -1,0 +1,24 @@
+---
+- name: Setup SSH
+  hosts: localhost
+  tasks:
+    - name: Create ssh config file
+      template:
+        src=files/ssh-config
+        dest=/home/{{ username }}/.ssh/config
+        owner={{ username }}
+        group={{ username }}
+        mode=0600
+
+    - name: Set global git username
+      git_config:
+        name: user.name
+        scope: global
+        value: "{{ git_user }}"
+
+    - name: Set global git email
+      git_config:
+        name: user.email
+        scope: global
+        value: "{{ git_email }}"
+
