@@ -6,6 +6,7 @@
       package:
         name: "{{ item }}"
         state: present
+        disable_gpg_check: true
       with_items:
         - http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm
         - http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm
@@ -16,12 +17,14 @@
       with_items:
         - bzip2
         - curl
-        - libselinux-python
         - readline-devel
         - redhat-rpm-config
         - zlib-devel
-        - python2-devel
+        - rubygems
+        - fuse-encfs
+        - chromium
         - python3-devel
+        - python3-libselinux
         - NetworkManager-openvpn
         - NetworkManager-openvpn-gnome
 
@@ -35,7 +38,6 @@
         - the_silver_searcher
         - tmux
         - tree
-        - tmuxinator
         - terminator
         - keepassxc
         - powerline
@@ -51,7 +53,6 @@
         - git
         - python-xdot
         - python3-libselinux
-        - python2-libselinux
         - ruby-devel
         - rubygems
         - libyaml-devel
@@ -66,7 +67,9 @@
         name: "{{ item }}"
         state: present
       with_items:
-        - gstreamer
         - vlc
         - gimp
         - ffmpeg
+
+    - name: "install tmuxinator with ruby gem"
+      shell: gem install tmuxinator

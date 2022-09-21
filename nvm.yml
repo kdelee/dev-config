@@ -4,18 +4,18 @@
   hosts: localhost
   become_user: "{{ username }}"
   tasks:
-    - name: ensure the ~/sfw directory is present
-      file: path=/home/{{ username }}/sfw
+    - name: ensure the ~/projects directory is present
+      file: path=/home/{{ username }}/projects
             state=directory
 
     - name: clone nvm
       git: repo=https://github.com/creationix/nvm.git
-           dest=/home/{{ username }}/sfw/nvm
+           dest=/home/{{ username }}/projects/nvm
            update=no
 
     - name: create symlink to nvm
       file: path=/home/{{ username }}/.nvm
-            src=/home/{{ username }}/sfw/nvm
+            src=/home/{{ username }}/projects/nvm
             state=link
 
     - name: set NVM_DIR in .bashrc
