@@ -1,11 +1,9 @@
 ---
 - name: Set Up Vim
   hosts: localhost
-  become_user: "{{ username }}"
   tasks:
     - name: install vim and requirements
       become: True
-      become_user: root
       package: name={{ item }}
       with_items:
         - ack
