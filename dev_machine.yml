@@ -1,6 +1,10 @@
----
-- name: Run all the local playbooks
+- name: Setup Workstation
   hosts: localhost
+  tasks:
+    - name: Set dynamic facts for user and OS version
+      set_fact:
+        username: "{{ ansible_user_id }}"
+        fedora_version: "{{ ansible_distribution_major_version }}"
 
 - import_playbook: packages.yml
 - import_playbook: vim.yml

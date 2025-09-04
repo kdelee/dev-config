@@ -2,7 +2,6 @@
 
 - name: Set Up nvm to manage node versions
   hosts: localhost
-  become_user: "{{ username }}"
   tasks:
     - name: ensure the ~/projects directory is present
       file: path=/home/{{ username }}/projects
