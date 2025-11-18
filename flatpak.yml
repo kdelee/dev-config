@@ -1,0 +1,19 @@
+---
+- name: Setup Flatpak
+  hosts: localhost
+  become: True
+  tasks:
+    - name: Install flatpak package
+      package:
+        name: flatpak
+        state: present
+
+    - name: Enable Flathub repository
+      command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      args:
+        creates: /var/lib/flatpak/repo/flathub.flatpakrepo
+
+    - name: Update flatpak remotes
+      command: flatpak update --assumeyes
+      changed_when: false
+

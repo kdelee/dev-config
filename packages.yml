@@ -38,6 +38,14 @@
         state: present
         update_cache: yes # Ensure package cache is updated after adding the repo
 
+    - name: Install Cursor from official RPM
+      become: True
+      tags: dev
+      ansible.builtin.dnf:
+        name: "https://api2.cursor.sh/updates/download/golden/linux-x64-rpm/cursor/2.0"
+        state: present
+        disable_gpg_check: yes
+
     - name: "Install basic packages"
       become: True
       package:
@@ -139,4 +147,17 @@
       # Only run this task if the gemini-cli was not found in the previous step.
       when: gemini_cli_check.rc != 0
 
+    - name: Install Dropbox package from official RPM
+      become: True
+      ansible.builtin.dnf:
+        name: "https://www.dropbox.com/download?dl=packages/fedora/nautilus-dropbox-2025.05.20-1.fc{{ fedora_version }}.x86_64.rpm"
+        state: present
+        disable_gpg_check: yes
+
+    - name: Download Dropbox CLI script
+      become: false # Run as the current user
+      ansible.builtin.get_url:
+        url: https://linux.dropbox.com/packages/dropbox.py
+        dest: "{{ ansible_env.HOME }}/dropbox.py"
+        mode: '0755'
 
